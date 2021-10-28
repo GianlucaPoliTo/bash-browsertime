@@ -4,6 +4,7 @@ name=$2
 http=$3
 num_esp=$4
 interface="ens2"
+video="false"
 echo "Hai inserito: Esperimenti-$1 name-$2 http-$3 numero_esp-$4"
 
 for t in ${network_param[@]}; do
@@ -29,10 +30,10 @@ for t in ${network_param[@]}; do
            --chrome.args ignore-urlfetcher-cert-requests \
            --chrome.args autoplay-policy=no-user-gesture-required --chrome.args no-first-run \
            -n 1 \
-           --video false \
-           --videoParams.createFilmstrip false \
-           --visualMetrics false \
-           --videoParams.convert false \
+           --video $video \
+           --videoParams.createFilmstrip $video \
+           --visualMetrics $video \
+           --videoParams.convert $video \
            --har har_http${http}_${name}_${t}_esp_${esp} \
            --resultDir /sitespeed/results_http${http}_${name}_${t}_esp_${esp} \
            --pageCompleteCheckStartWait 540000 \
@@ -43,10 +44,10 @@ for t in ${network_param[@]}; do
          --chrome.args autoplay-policy=no-user-gesture-required --chrome.args no-first-run \
          --chrome.args ignore-certificate-errors-spki-list=5V2I9iQ0NrsorG7qXJzxuVGyFcla/L4HNMyrzgx7X0E= \
          -n 1 \
-         --video false \
-         --videoParams.createFilmstrip false \
-         --visualMetrics false \
-         --videoParams.convert false \
+         --video $video \
+         --videoParams.createFilmstrip $video \
+         --visualMetrics $video \
+         --videoParams.convert $video \
          --har har_http${http}_${name}_${t}_esp_${esp} \
          --resultDir /sitespeed/results_http${http}_${name}_${t}_esp_${esp}\
          --pageCompleteCheckStartWait 540000 \
@@ -60,10 +61,10 @@ for t in ${network_param[@]}; do
            --chrome.args ignore-certificate-errors-spki-list=5V2I9iQ0NrsorG7qXJzxuVGyFcla/L4HNMyrzgx7X0E= \
            --chrome.args quic-version=h3 \
            -n 1 \
-           --video false \
-           --videoParams.createFilmstrip false \
-           --visualMetrics false \
-           --videoParams.convert false \
+           --video $video \
+           --videoParams.createFilmstrip $video \
+           --visualMetrics $video \
+           --videoParams.convert $video \
            --har har_http${http}_${name}_${t}_esp_${esp} \
            --resultDir /sitespeed/results_http${http}_${name}_${t}_esp_${esp}\
            --pageCompleteCheckStartWait 540000 \
