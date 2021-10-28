@@ -3,6 +3,7 @@ network_param=$(echo $1 | tr ":" " ")
 name=$2
 http=$3
 num_esp=$4
+interface="ens2"
 echo "Hai inserito: Esperimenti-$1 name-$2 http-$3 numero_esp-$4"
 
 for t in ${network_param[@]}; do
@@ -10,11 +11,11 @@ for t in ${network_param[@]}; do
     tc qdisc show >> http${http}_log_${name}.txt
     echo "########END-BEFORE########" >> http${http}_log_${name}.txt
     if [[ ${name} == "bw" ]]; then
-        sudo ./network_emulator.sh docker0:${t}mbit:${t}mbit::
+        sudo ./network_emulator.sh ${interface}:${t}mbit:${t}mbit::
     elif [[ ${name} == "pl" ]]; then
-        sudo ./network_emulator.sh docker0::::${t}%
+        sudo ./network_emulator.sh ${interface}::::${t}%
     elif [[ ${name} == "RTT" ]]; then
-        sudo ./network_emulator.sh docker0:::${t}ms:
+        sudo ./network_emulator.sh ${interface}:::${t}ms:
     else
         echo "Hai inserito tipo errato"
         exit -1
